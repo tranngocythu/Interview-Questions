@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Câu hỏi phỏng vấn hiệu quả</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, practical field kit for interview panels; warm "mình – em".
+   IDEA: a pocket card deck the interviewer keeps beside the scoring sheet.
+   PICTURE: a time axis — STAR looks back from "today", STEP steps forward.
+   COLOUR and TYPE: white ground, Prudential red band; red = STAR, teal = STEP, amber = signals. Be Vietnam Pro.
+   LAYOUT: dark cover with colour tiles (AI assistant largest), sticky colour tab row, one column of cards. */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#151314);--ink:light-dark(#1b1718,#f3efef);--mute:light-dark(#625a5c,#b7adaf);
+--line:light-dark(#e8e2e3,#342f31);--soft:light-dark(#f7f4f4,#1e1b1c);
+--red:light-dark(#d7192a,#ff6670);--redsoft:light-dark(#fdeced,#3a1b1e);
+--teal:light-dark(#0d6b6a,#5cc8c4);--tealsoft:light-dark(#e5f3f2,#122f2e);
+--amb:light-dark(#9a5a00,#f2b54e);--ambsoft:light-dark(#fff4e0,#33270f);
+--band:light-dark(#d7192a,#8e101b)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Be Vietnam Pro",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{line-height:1.12;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,5vw,46px);font-weight:700}
+h2{font-size:clamp(24px,3.4vw,32px);font-weight:700;margin-bottom:6px}
+h3{font-size:18px;font-weight:600}
+p{margin:.4em 0}
+.wrap{max-width:1120px;margin:0 auto}
+.band{padding:clamp(24px,4vw,52px) max(5vw,16px)}
+header{background:#1a1416;color:#fff;position:relative;border-bottom:1px solid #2c2427}
+header::before{content:"";position:absolute;inset:0 0 auto 0;height:8px;background:#d7192a}
+header .by{font-size:14px;color:#ff9aa3;font-weight:600;margin-bottom:8px}
+header .tag{font-size:17px;color:#d9cfd1;max-width:56ch;margin:10px 0 0}
+.tiles{display:grid;grid-template-columns:1.45fr repeat(3,minmax(0,1fr));gap:12px;margin-top:26px}
+.tile{position:relative;display:flex;flex-direction:column;gap:4px;padding:16px;border-radius:18px;color:#fff;text-decoration:none;min-height:118px;overflow:hidden;transition:transform .15s}
+.tile:hover{transform:translateY(-2px)}
+.tile svg{width:28px;height:28px;margin-bottom:auto;flex:none}
+.tile b{font-size:17px;line-height:1.2;margin-top:10px}
+.tile .d{font-size:13.5px;opacity:.9;line-height:1.35}
+.tile[aria-current=page]{outline:3px solid #fff;outline-offset:2px}
+.tile:focus-visible{outline:3px solid #ffc629;outline-offset:2px}
+.t-star{background:#c8172a}.t-lance{background:#5b4f53}.t-sig{background:#b5680a}.t-fc{background:#0d6b6a}.t-rp{background:#2453a6;grid-column:span 2}
+.t-ai{grid-row:span 2;background:linear-gradient(140deg,#ff4d5a 0%,#e0182b 45%,#8e0d19 100%);box-shadow:0 14px 34px rgba(224,24,43,.45);padding:22px}
+.t-ai svg{width:40px;height:40px}
+.t-ai b{font-size:27px}
+.t-ai .d{font-size:15.5px;max-width:34ch}
+.t-ai .badge{position:absolute;top:18px;right:18px;background:#ffc629;color:#1a1416;font-size:12.5px;font-weight:700;border-radius:999px;padding:4px 10px}
+.t-ai .cta{margin-top:12px;align-self:flex-start;background:#fff;color:#c8172a;font-weight:700;font-size:14.5px;border-radius:999px;padding:8px 16px}
+.t-ai::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);transform:translateX(-100%);animation:shine 3.8s ease-in-out infinite;pointer-events:none}
+@keyframes shine{55%,100%{transform:translateX(100%)}}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .scroll{position:relative;display:flex;gap:6px;overflow-x:auto;max-width:1120px;margin:0 auto;padding:8px max(5vw,12px);scrollbar-width:none}
+nav a{--c:#5b4f53;flex:none;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;padding:9px 14px;border-radius:999px;min-height:44px;display:flex;align-items:center;gap:8px;background:color-mix(in srgb,var(--c) 12%,transparent)}
+nav a::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+nav a[aria-current=page]{background:var(--c);color:#fff}
+nav a[aria-current=page]::before{background:#fff}
+.n-star{--c:#c8172a!important}.n-sig{--c:#b5680a!important}.n-fc{--c:#0d6b6a!important}.n-rp{--c:#2453a6!important}
+nav a.n-ai{background:linear-gradient(135deg,#ff4d5a,#c8172a);color:#fff;box-shadow:0 4px 14px rgba(224,24,43,.35)}
+nav a.n-ai::before{background:#ffc629}
+nav a.n-ai[aria-current=page]{box-shadow:0 0 0 3px var(--bg),0 0 0 5px #c8172a}
+nav a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+[hidden]{display:none!important}
+.lead{color:var(--mute);max-width:66ch;margin-bottom:22px}
+.small{font-size:13.5px;color:var(--mute)}
+/* axis picture */
+.axis{display:grid;grid-template-columns:minmax(0,1fr) 92px minmax(0,1fr);gap:0;margin:8px 0 30px}
+.side h3{font-size:22px;display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.side .when{font-size:14px;color:var(--mute);margin-bottom:12px}
+.star h3{color:var(--red)}.step h3{color:var(--teal)}
+.mid{position:relative;display:flex;justify-content:center}
+.mid::before{content:"";position:absolute;top:0;bottom:0;width:3px;background:var(--ink);border-radius:3px}
+.mid span{position:sticky;top:90px;align-self:flex-start;margin-top:40px;background:var(--ink);color:var(--bg);font-size:13px;font-weight:600;padding:8px 6px;border-radius:10px;text-align:center;line-height:1.25;width:78px}
+.row{display:grid;grid-template-columns:56px minmax(0,1fr);gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.L{width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:28px;font-weight:700;color:#fff}
+.star .L{background:var(--red)}.step .L{background:var(--teal)}
+.star .L.opt{background:transparent;color:var(--red);border:2px dashed var(--red)}
+.row b{display:block;font-size:16.5px}
+.row .need{color:var(--mute);font-size:14.5px}
+.row q{display:block;margin-top:4px;font-style:italic;quotes:"“" "”"}
+.memo{background:var(--soft);border-radius:16px;padding:18px 20px;font-size:17px;font-weight:600;text-align:center;margin-bottom:28px}
+.memo em{font-style:normal;color:var(--red)}.memo i{font-style:normal;color:var(--teal)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.card{border:1px solid var(--line);border-radius:16px;padding:18px 20px;background:var(--bg)}
+.card h3{margin-bottom:8px}
+ol.rules,ul.rules{margin:6px 0 0;padding-left:1.25em}ol.rules li,ul.rules li{margin:6px 0}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-size:14px;color:var(--mute);font-weight:600}
+/* LANCE */
+.lance .row{grid-template-columns:56px minmax(0,1.1fr) minmax(0,1fr);align-items:start}
+.lance .L{background:var(--ink);color:var(--bg)}
+.ex{background:var(--soft);border-radius:12px;padding:10px 12px;font-size:14.5px}
+/* funnel */
+.funnel{display:grid;gap:8px;margin:12px 0 8px}
+.tier{margin:0 auto;border-radius:14px;padding:14px 18px;color:#fff;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;align-items:baseline}
+.tier .n{font-size:26px;font-weight:700;line-height:1;grid-row:span 2}
+.tier b{font-size:16px}.tier span{font-size:14.5px;opacity:.95}
+.t1{width:100%;background:var(--red)}.t2{width:88%;background:color-mix(in srgb,var(--red) 78%,var(--ink))}
+.t3{width:76%;background:color-mix(in srgb,var(--red) 55%,var(--ink))}.t4{width:64%;background:var(--ink);color:var(--bg)}
+/* signals */
+.sig{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px}
+.sg{border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.sg .say{font-size:18px;font-weight:600;color:var(--amb)}
+.sg .mean{color:var(--mute);font-size:14.5px}
+.sg .ask{background:var(--ambsoft);border-radius:12px;padding:10px 12px;font-size:15px}
+.sg .ask small{display:block;font-size:13px;color:var(--mute);font-weight:600;margin-bottom:2px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;border-radius:999px;padding:3px 10px;white-space:nowrap}
+.cS{background:var(--redsoft);color:var(--red)}.cP{background:var(--tealsoft);color:var(--teal)}
+/* FC bank */
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.f{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:9px 14px;font:600 14.5px "Be Vietnam Pro",sans-serif;min-height:44px;cursor:pointer}
+.f[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.toggle{margin-left:auto;display:flex;gap:6px;align-items:center;font-size:14px;color:var(--mute)}
+.qlist{display:grid;gap:10px}
+.q{border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.q.open{border-color:var(--ink);box-shadow:0 6px 24px light-dark(rgba(0,0,0,.07),rgba(0,0,0,.4))}
+.qh{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) 28px;gap:12px;padding:16px 16px;width:100%;align-items:start}
+.qh .no{width:44px;height:44px;border-radius:12px;background:var(--soft);display:grid;place-items:center;font-weight:700;font-size:15px}
+.q.open .qh .no{background:var(--red);color:#fff}
+.qh .txt{font-size:16.5px;font-weight:500}
+.qh .meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.pill{font-size:12.5px;font-weight:600;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.qh .arr{width:28px;height:28px;margin-top:8px;transition:transform .2s}
+.q.open .arr{transform:rotate(180deg)}
+.qb{padding:0 16px 18px 72px}
+.remind{display:flex;gap:10px;background:var(--ink);color:var(--bg);border-radius:12px;padding:11px 14px;font-size:14.5px;margin-bottom:12px}
+.remind svg{flex:none;margin-top:2px}
+.note{background:var(--ambsoft);border-radius:12px;padding:10px 14px;font-size:14.5px;margin-bottom:12px}
+.note b{color:var(--amb)}
+.probes{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.probes label{display:grid;grid-template-columns:22px 40px minmax(0,1fr);gap:10px;align-items:start;padding:10px 12px;border-radius:12px;background:var(--soft);cursor:pointer;min-height:44px}
+.probes input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--ink)}
+.probes .lt{display:flex;flex-direction:column;align-items:center;font-weight:700;font-size:17px;line-height:1.1}
+.probes .lt small{font-size:10.5px;font-weight:600;white-space:nowrap;margin-top:2px}
+.mS .lt{color:var(--red)}.mP .lt{color:var(--teal)}
+.probes .pt{font-size:16px}
+.probes input:checked~.pt{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--line)}
+.sum{margin-top:12px;border-left:4px solid var(--ink);padding:6px 0 6px 12px;font-size:15px}
+.sum small,.exp small{display:block;font-size:13px;color:var(--mute);font-weight:600}
+.exp{margin-top:14px}.exp ul{margin:4px 0 0;padding-left:1.2em;font-size:15px}
+.reset{all:unset;cursor:pointer;font-size:13.5px;color:var(--mute);text-decoration:underline;margin-top:10px;display:inline-block;min-height:32px}
+/* assistant */
+.lbl{font-weight:600;font-size:15px;display:grid;gap:6px}
+textarea,select{width:100%;font:16px/1.45 "Be Vietnam Pro",sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px}
+textarea{resize:vertical;min-height:88px}
+textarea.need{border-color:var(--red);outline:2px solid var(--redsoft)}
+.aform{border:1px solid var(--line);border-radius:20px;padding:18px;display:grid;gap:14px;background:linear-gradient(180deg,var(--redsoft),var(--bg) 75%)}
+.arow{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end}
+.arow>*{flex:1 1 240px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.pick{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pk{all:unset;box-sizing:border-box;cursor:pointer;border-radius:16px;padding:16px 18px;color:#fff;display:grid;gap:2px;min-height:76px}
+.pk b{font-size:19px}.pk span{font-size:14px;opacity:.92}
+.pk-star{background:#c8172a}.pk-step{background:#0d6b6a}
+.pk-star[aria-pressed=true]{box-shadow:0 0 0 3px var(--bg),0 0 0 6px #c8172a}.pk-step[aria-pressed=true]{box-shadow:0 0 0 3px var(--bg),0 0 0 6px #0d6b6a}
+.pk:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.pk[disabled]{opacity:.6;cursor:wait}
+#aout{margin-top:22px}
+.ares{display:grid;gap:14px}
+.ahead{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.mainq{border:2px solid var(--ink);border-radius:16px;padding:12px 16px}
+.mainq small,.fb small{font-size:13px;color:var(--mute);font-weight:600}
+.mainq p{font-size:17px;font-weight:500;margin:6px 0}
+.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.stp{border:1px solid var(--line);border-radius:16px;padding:2px 14px 12px}
+.stp summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) 24px;gap:12px;align-items:center;padding:10px 0;min-height:60px}
+.stp summary::-webkit-details-marker{display:none}
+.stp .L{width:44px;height:44px;font-size:22px;border-radius:12px}
+.L.ls{background:#c8172a}.L.lp{background:#0d6b6a}
+.stp .need{display:block;color:var(--mute);font-size:14px;font-weight:400}
+.stp .arr{width:24px;height:24px;transition:transform .2s}
+.stp[open] .arr{transform:rotate(180deg)}
+.opts{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.opts label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;padding:10px 12px;border-radius:12px;background:var(--soft);cursor:pointer;font-size:15.5px;min-height:44px}
+.opts input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--ink)}
+.opts input:checked+span{font-weight:600}
+.arow2{display:flex;flex-wrap:wrap;gap:8px}
+.go{all:unset;box-sizing:border-box;cursor:pointer;background:#c8172a;color:#fff;font-weight:700;text-align:center;border-radius:14px;padding:14px 18px;min-height:48px}
+.go.blue{background:#2453a6}
+.go[disabled]{opacity:.55;cursor:wait}
+.empty{border:2px dashed var(--line);border-radius:18px;padding:28px;color:var(--mute);text-align:center}
+.copy{all:unset;cursor:pointer;font-size:14px;font-weight:600;border:1px solid var(--line);border-radius:10px;padding:9px 14px;min-height:40px;box-sizing:border-box}
+.err{background:var(--redsoft);color:var(--red);border-radius:12px;padding:12px 14px}
+.dots span{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin:0 3px;animation:b 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes b{50%{transform:translateY(-6px);opacity:.4}}
+/* role play */
+.rp-setup{display:grid;gap:14px;max-width:780px;border:1px solid var(--line);border-radius:20px;padding:18px;background:linear-gradient(180deg,color-mix(in srgb,#2453a6 10%,var(--bg)),var(--bg) 75%)}
+.rp-setup .f[aria-pressed=true]{background:#2453a6;border-color:#2453a6;color:#fff}
+.track{display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:61px;z-index:3;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line)}
+.tk{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:700;border:2px dashed var(--line);color:var(--mute)}
+.tk.on{background:#c8172a;color:#fff;border:2px solid #c8172a}.tk.tp.on{background:#0d6b6a;border-color:#0d6b6a}
+.chat{display:grid;gap:10px;margin:16px 0;max-width:820px}
+.msg{max-width:min(86%,640px);padding:12px 14px;border-radius:16px;font-size:16px;white-space:pre-wrap}
+.msg small{display:block;font-size:12.5px;font-weight:600;opacity:.75;margin-bottom:2px;white-space:normal}
+.mi{justify-self:end;background:#2453a6;color:#fff;border-bottom-right-radius:6px}
+.mc{justify-self:start;background:var(--soft);border-bottom-left-radius:6px}
+.coach{justify-self:start;max-width:min(92%,640px);border:1px dashed var(--amb);background:var(--ambsoft);border-radius:14px;padding:2px 14px 6px;font-size:14.5px}
+.coach summary{cursor:pointer;font-weight:600;color:var(--amb);min-height:40px;display:flex;align-items:center}
+.coach p{margin:6px 0}
+#rinput{display:grid;gap:10px;max-width:820px}
+.rp-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.fb{border:2px solid var(--ink);border-radius:18px;padding:18px 20px;margin-top:18px;max-width:820px;display:grid;gap:8px}
+.fb ul{padding-left:1.2em;margin:4px 0}
+.fbtrack{display:flex;gap:8px}
+@media(prefers-reduced-motion:reduce){.t-ai::after{display:none}.tile,.stp .arr{transition:none}}
+footer{border-top:1px solid var(--line);color:var(--mute);font-size:13.5px}
+@media(max-width:720px){
+.tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.t-ai{grid-column:span 2;grid-row:auto;padding:18px}.t-ai b{font-size:23px}.t-ai svg{width:32px;height:32px}
+.tile{min-height:88px;padding:14px}.tile:not(.t-ai) .d{display:none}.tile b{font-size:16px}
+.steps{grid-template-columns:1fr}
+.pick{grid-template-columns:1fr}.pk{padding:12px 16px;min-height:60px}.pk b{font-size:17px}
+.axis{grid-template-columns:1fr}.mid{display:none}.step{margin-top:26px}
+.grid2{grid-template-columns:1fr}
+.lance .row{grid-template-columns:48px minmax(0,1fr)}.lance .row .ex{grid-column:2}
+.L{width:48px;height:48px;font-size:24px}.row{grid-template-columns:48px minmax(0,1fr)}
+.tier{width:100%!important}
+.qb{padding:0 14px 16px}
+.qh{grid-template-columns:34px minmax(0,1fr) 22px;gap:10px;padding:14px 12px}.qh .no{width:34px;height:34px;font-size:13px;border-radius:10px}.qh .arr{width:22px;height:22px;margin-top:6px}
+.probes label{grid-template-columns:20px 44px minmax(0,1fr);gap:8px;padding:10px}
+.toggle{margin-left:0}
+}
+@media(max-width:600px){table{font-size:13.5px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:7.5em}.stack td::before{content:attr(data-l);float:inline-start;width:7em;margin-inline-start:-7.5em;color:var(--mute);font-weight:600}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header class="band">
+  <div class="wrap">
+    <div class="by">Agency Academy · Hội đồng phỏng vấn RED+</div>
+    <h1>Câu hỏi phỏng vấn hiệu quả</h1>
+    <p class="tag">Câu hỏi chính chỉ mở cửa. Bằng chứng nằm ở phần hỏi tiếp và lắng nghe.</p>
+    <div class="tiles">
+      <a class="tile t-ai" href="#tro-ly"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg><span class="badge">AI</span><b>Trợ lý đào sâu</b><span class="d">Gõ câu hỏi hoặc chủ đề, chọn Hành vi × STAR hay Tình huống × STEP, nhận khung câu hỏi cho từng bước.</span><span class="cta">Mở trợ lý →</span></a>
+      <a class="tile t-star" href="#nen-tang"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg><b>STAR &amp; STEP</b><span class="d">Hai khung đào sâu</span></a>
+      <a class="tile t-lance" href="#lang-nghe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v10H10l-5 4v-4H4z"/><path d="M8 9h8M8 12h5"/></svg><b>LANCE &amp; phễu</b><span class="d">Hỏi và nghe đúng</span></a>
+      <a class="tile t-sig" href="#tin-hieu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.01"/></svg><b>Tín hiệu cần đào</b><span class="d">Nghe câu này thì hỏi tiếp</span></a>
+      <a class="tile t-fc" href="#cau-hoi-fc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg><b>Câu hỏi FC</b><span class="d">25 câu trong phiếu, kèm câu đào sâu</span></a>
+      <a class="tile t-rp" href="#role-play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5.2a3 3 0 0 1 0 5.6M21 20c0-2.6-1.5-4.8-3.6-5.6"/></svg><b>Role play</b><span class="d">Luyện với AI đóng vai ứng viên, hoặc luyện theo cặp</span></a>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Các phần"><div class="scroll">
+  <a class="n-ai" href="#tro-ly">Trợ lý đào sâu</a>
+  <a class="n-star" href="#nen-tang">STAR &amp; STEP</a>
+  <a href="#lang-nghe">LANCE &amp; phễu</a>
+  <a class="n-sig" href="#tin-hieu">Tín hiệu cần đào</a>
+  <a class="n-fc" href="#cau-hoi-fc">Câu hỏi FC</a>
+  <a class="n-rp" href="#role-play">Role play</a>
+</div></nav>
+
+<main>
+<!-- ============ STAR & STEP ============ -->
+<section id="nen-tang" class="band"><div class="wrap">
+  <h2>STAR nhìn lại, STEP bước tới</h2>
+  <p class="lead">Câu Behavioural hỏi việc ứng viên <b>đã làm</b> → đào bằng STAR. Câu Situational hỏi việc ứng viên <b>sẽ làm</b> → đào bằng STEP. Mỗi chữ là một mảnh bằng chứng; thiếu chữ nào, hỏi tiếp chữ đó.</p>
+
+  <div class="axis">
+    <div class="side star">
+      <h3>STAR <span class="chip cS">Behavioural</span></h3>
+      <div class="when">Ứng viên kể chuyện đã xảy ra · "Kể mình nghe lần gần nhất em…"</div>
+      <div class="row"><div class="L">S</div><div><b>Situation · Bối cảnh</b><span class="need">Ở đâu, khi nào, với ai</span><q>Chuyện này xảy ra lúc nào em? Lúc đó em đang làm ở đâu?</q></div></div>
+      <div class="row"><div class="L">T</div><div><b>Task · Nhiệm vụ</b><span class="need">Thách thức là gì, cần đạt gì, vì sao</span><q>Lúc đó em được giao việc gì? Mục tiêu cụ thể là bao nhiêu?</q></div></div>
+      <div class="row"><div class="L">A</div><div><b>Action · Hành động</b><span class="need">Chính ứng viên đã làm gì, làm thế nào</span><q>Cụ thể em đã làm gì? Phần nào là của em, phần nào của nhóm?</q></div></div>
+      <div class="row"><div class="L">R</div><div><b>Results · Kết quả</b><span class="need">Kết quả đo được, sự ghi nhận</span><q>Kết quả cuối cùng ra sao? Đo bằng gì?</q></div></div>
+      <div class="row"><div class="L opt">L</div><div><b>Lesson · Bài học (tùy chọn)</b><span class="need">Bài học và việc đã áp dụng lại</span><q>Nếu làm lại, em sẽ làm khác điều gì?</q></div></div>
+    </div>
+    <div class="mid" aria-hidden="true"><span>Hôm nay<br>buổi phỏng vấn</span></div>
+    <div class="side step">
+      <h3>STEP <span class="chip cP">Situational</span></h3>
+      <div class="when">Mình đưa ra tình huống, kết quả chưa xảy ra · "Nếu… thì em sẽ làm gì?"</div>
+      <div class="row"><div class="L">S</div><div><b>Steps · Các bước</b><span class="need">Làm gì trước, làm gì sau, đủ cụ thể để hình dung</span><q>Việc đầu tiên em làm là gì? Rồi sau đó?</q></div></div>
+      <div class="row"><div class="L">T</div><div><b>Thinking · Lý do</b><span class="need">Vì sao chọn cách đó, chấp nhận đánh đổi gì</span><q>Vì sao em chọn cách đó? Làm vậy thì mình mất gì?</q></div></div>
+      <div class="row"><div class="L">E</div><div><b>Else · Phương án khác</b><span class="need">Có phương án dự phòng</span><q>Nếu khách vẫn không đồng ý thì sao?</q></div></div>
+      <div class="row"><div class="L">P</div><div><b>Past · Trải nghiệm thật</b><span class="need">Đã từng gặp chuyện tương tự chưa</span><q>Em từng gặp tình huống giống vậy chưa? → Có thì chuyển sang STAR.</q></div></div>
+    </div>
+  </div>
+
+  <div class="memo">Câu nhớ: <em>STAR nhìn lại</em> · <i>STEP bước tới</i></div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Khi nào dùng loại câu nào</h3>
+      <ol class="rules">
+        <li>Ứng viên đã có trải nghiệm tương đương (bán hàng, chăm sóc khách, quản lý người, kinh doanh riêng) → <b>Behavioural</b>.</li>
+        <li>Chưa có trải nghiệm đó → <b>Situational</b>, rồi hỏi "Em từng gặp chuyện tương tự chưa?" để chuyển sang Behavioural nếu được.</li>
+        <li>Vị trí phức tạp hoặc quản lý (ví dụ MoA) → ưu tiên <b>Behavioural</b>.</li>
+        <li>Tình huống đặc thù của nghề mà ứng viên chưa thể gặp → <b>Situational</b> cho mọi ứng viên.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Vòng lặp cho mỗi tiêu chí</h3>
+      <ol class="rules">
+        <li>Hỏi câu chính, mỗi lần một câu.</li>
+        <li>Nghe trọn, không ngắt lời, chịu được khoảng lặng.</li>
+        <li>Đào sâu tới khi đủ bằng chứng (STAR hoặc STEP).</li>
+        <li>Tóm tắt để xác nhận: "Nếu mình hiểu đúng thì lúc đó em đã…, kết quả là…, đúng không em?"</li>
+        <li>Chuyển tiếp nhẹ nhàng: "Cảm ơn em, phần này mình nắm rõ rồi. Giờ mình muốn nghe thêm về…"</li>
+      </ol>
+    </div>
+  </div>
+  <p class="small" style="margin-top:14px">STAR là mô hình chuẩn, phổ biến trong ngành. STEP là khung gợi nhớ nội bộ của bộ hướng dẫn, chưa phải mô hình đã kiểm chứng: hỏi cùng một bộ câu đào sâu cho mọi ứng viên và chấm trên cùng thang.</p>
+</div></section>
+
+<!-- ============ LANCE & phễu ============ -->
+<section id="lang-nghe" class="band" hidden><div class="wrap">
+  <h2>Nghe đúng với LANCE</h2>
+  <p class="lead">Năm quy tắc LIMRA cho người phỏng vấn. Tỷ lệ nói lý tưởng khoảng 7:1, ứng viên nói nhiều hơn.</p>
+  <div class="lance">
+    <div class="row"><div class="L">L</div><div><b>Lắng nghe · Listen</b><span class="need">Ứng viên nói là chính. Không vội chặn lời khi ứng viên ngập ngừng; cho họ thời gian suy nghĩ.</span></div><div class="ex">Ứng viên ngừng giữa câu → im lặng chờ 3–5 giây, không nói tiếp thay họ.</div></div>
+    <div class="row"><div class="L">A</div><div><b>Đầy đủ, chính xác · Accurate &amp; complete</b><span class="need">Hỏi ngắn, rõ, mỗi lần một câu. Thiếu bối cảnh, hành động hay kết quả thì hỏi tiếp trước khi chuyển câu.</span></div><div class="ex">"Em nói đã xử lý rất tốt. Cụ thể em đã làm gì?"</div></div>
+    <div class="row"><div class="L">N</div><div><b>Khách quan · Neutral</b><span class="need">Không hỏi câu gợi ý đáp án. Giữ nét mặt, dáng ngồi trung tính; không khen hay chê trong lúc hỏi.</span></div><div class="ex">Không nói "Hay quá!" sau câu trả lời; chỉ nói "Cảm ơn em" hoặc "Mình hiểu".</div></div>
+    <div class="row"><div class="L">C</div><div><b>Kiểm soát · Control</b><span class="need">Giữ đúng chủ đề và thời gian. Câu hỏi ngoài lề của ứng viên: ghi lại, trả lời ở Closing.</span></div><div class="ex">Ứng viên kể lan man → "Cảm ơn em, vậy kết quả cuối cùng ra sao?"</div></div>
+    <div class="row"><div class="L">E</div><div><b>Cơ hội như nhau · Equal opportunity</b><span class="need">Cùng tiêu chí, cùng thang chấm. Chỉ hỏi điều liên quan công việc; không hỏi hôn nhân, kế hoạch sinh con, tuổi tác.</span></div><div class="ex">Cần biết khả năng làm toàn thời gian → hỏi thẳng về thời gian và kế hoạch làm việc.</div></div>
+  </div>
+
+  <h2 style="margin-top:40px">Phễu câu hỏi: mở rộng trước, thu hẹp sau</h2>
+  <p class="lead">Mỗi tiêu chí đi qua bốn tầng. STAR và STEP nằm chủ yếu ở tầng 3.</p>
+  <div class="funnel">
+    <div class="tier t1"><span class="n">1</span><b>Câu chính (Behavioural hoặc Situational)</b><span>Mở ra một câu chuyện hoặc một tình huống · "Kể mình nghe lần gần nhất em thuyết phục được một người khó tính."</span></div>
+    <div class="tier t2"><span class="n">2</span><b>Câu mở</b><span>Để ứng viên nói thêm · "Rồi sao nữa em?" · "Em kể thêm về phần đó được không?"</span></div>
+    <div class="tier t3"><span class="n">3</span><b>Câu thăm dò (STAR / STEP)</b><span>Đào vào chi tiết còn thiếu · "Lúc đó cụ thể em đã nói gì với khách?"</span></div>
+    <div class="tier t4"><span class="n">4</span><b>Câu đóng / tóm tắt</b><span>Xác nhận đã hiểu đúng · "Vậy là em đã gọi lại khách ba lần trong hai tuần, đúng không em?"</span></div>
+  </div>
+
+  <div class="grid2" style="margin-top:24px">
+    <div class="card">
+      <h3>Bảy quy tắc đặt câu</h3>
+      <ol class="rules">
+        <li><b>Mỗi lần một câu.</b> Hỏi dồn 3–4 câu thì ứng viên chỉ trả lời câu cuối.</li>
+        <li><b>Đi từ chung đến cụ thể.</b></li>
+        <li><b>Hỏi nối theo câu trả lời trước.</b> "Giờ em không còn chắc lắm" → "Điều gì khiến em thấy vậy?"</li>
+        <li><b>Không lộ bài.</b> Câu hỏi không tiết lộ câu trả lời mình mong đợi.</li>
+        <li><b>Hỏi cụ thể thay vì chung chung.</b> Gặp từ trừu tượng thì hỏi lại tới khi cụ thể.</li>
+        <li><b>Không mở đầu bằng câu khó.</b></li>
+        <li><b>Không tra hỏi.</b> Mình không phải công tố viên.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>Nghe và ghi chép</h3>
+      <ul class="rules">
+        <li>Không sợ im lặng: ứng viên thường tự nói thêm phần thật nhất.</li>
+        <li>Diễn đạt lại ý ứng viên vừa nói để họ nói thêm và sửa chỗ mình hiểu sai.</li>
+        <li>Trong hội đồng: mỗi lúc chỉ một người hỏi; không liếc nhau, không gật gù ra hiệu.</li>
+        <li>Ghi liên tục, ghi <b>bằng chứng</b> chứ chưa ghi nhận xét.</li>
+      </ul>
+      <table class="stack" style="margin-top:10px">
+        <thead><tr><th>Bằng chứng (nên ghi)</th><th>Nhận xét (để lúc chấm)</th></tr></thead>
+        <tbody>
+          <tr><td>"Gọi lại khách 3 lần trong 2 tuần"</td><td>"Kiên trì"</td></tr>
+          <tr><td>"Đề xuất hạn mức thấp hơn, bị thiếu chỉ tiêu tháng đó"</td><td>"Có vẻ trung thực"</td></tr>
+          <tr><td>"P100 có khoảng 30 tên, chưa phân nhóm"</td><td>"Chưa chuẩn bị kỹ"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ Tín hiệu ============ -->
+<section id="tin-hieu" class="band" hidden><div class="wrap">
+  <h2>Nghe thấy câu này thì đào tiếp</h2>
+  <p class="lead">Những tín hiệu cho thấy câu trả lời chưa đủ bằng chứng để chấm. Mỗi thẻ kèm một câu hỏi tiếp, hỏi từng câu một.</p>
+  <div class="sig" id="sigs"></div>
+  <p class="small" style="margin-top:16px">Tổng hợp từ bộ hướng dẫn phỏng vấn Behavioural &amp; Situational (Phần 4–6). Nhớ: điểm thấp có thể do người phỏng vấn chưa hỏi, không phải do ứng viên yếu.</p>
+</div></section>
+
+<!-- ============ Câu hỏi FC ============ -->
+<section id="cau-hoi-fc" class="band" hidden><div class="wrap">
+  <h2>Câu hỏi đào sâu cho phiếu FC</h2>
+  <p class="lead">Chạm vào câu hỏi mẫu để mở bộ câu đào sâu. Đánh dấu câu đã hỏi để không bỏ sót; không cần hỏi hết, dừng khi đã đủ bằng chứng.</p>
+  <div class="tools" id="filters"></div>
+  <div class="qlist" id="qlist"></div>
+  <p class="small" style="margin-top:16px">Câu hỏi chính và phần "Kỳ vọng" lấy nguyên từ phiếu Interview Questionnaire FC (RED+). Câu đào sâu là gợi ý vận dụng STAR/STEP, nên được hội đồng đọc lại trước khi dùng.</p>
+</div></section>
+
+<!-- ============ Trợ lý ============ -->
+<section id="tro-ly" class="band" hidden><div class="wrap">
+  <h2>Trợ lý đào sâu</h2>
+  <p class="lead">Nhập câu hỏi hoặc chủ đề bất kỳ rồi chọn khung. Trợ lý xổ ra các câu gợi ý cho từng bước để bạn có khung, rồi tự linh hoạt theo câu trả lời thật.</p>
+  <div class="aform">
+    <label class="lbl" for="aq">Câu hỏi hoặc chủ đề</label>
+    <textarea id="aq" placeholder="Ví dụ: kỹ năng bán hàng, hoặc gõ nguyên một câu hỏi"></textarea>
+    <div class="arow">
+      <label class="lbl">Vị trí
+        <select id="apos"><option value="FC – Chuyên viên Tư vấn Tài chính">FC – Chuyên viên Tư vấn Tài chính</option><option value="MoA – Quản lý Agency">MoA – Quản lý Agency</option><option value="vị trí khác">Vị trí khác</option></select>
+      </label>
+      <div class="lbl">Xưng hô
+        <div class="seg" id="apron"><button type="button" class="f" data-p="em" aria-pressed="true">mình – em</button><button type="button" class="f" data-p="ac" aria-pressed="false">mình – anh/chị</button></div>
+      </div>
+    </div>
+    <div class="lbl">Chọn khung để nhận gợi ý</div>
+    <div class="pick">
+      <button type="button" class="pk pk-star" data-m="STAR" aria-pressed="false"><b>Hành vi × STAR</b><span>Hỏi việc ứng viên đã làm</span></button>
+      <button type="button" class="pk pk-step" data-m="STEP" aria-pressed="false"><b>Tình huống × STEP</b><span>Hỏi việc ứng viên sẽ làm</span></button>
+    </div>
+  </div>
+  <div id="aout" aria-live="polite"></div>
+</div></section>
+
+<section id="role-play" class="band" hidden><div class="wrap">
+  <h2>Role play: luyện đào sâu</h2>
+  <p class="lead">Bạn là người phỏng vấn. Chọn câu hỏi chính rồi luyện với AI đóng vai ứng viên, hoặc luyện theo cặp: một người diễn vai ứng viên, bạn ghi lại câu trả lời để nhận gợi ý.</p>
+  <div class="rp-setup" id="rpSetup">
+    <label class="lbl">Câu hỏi chính <select id="rq"></select></label>
+    <textarea id="rqc" hidden placeholder="Gõ câu hỏi chính của bạn"></textarea>
+    <div class="lbl" id="rmWrap" hidden>Khung đào sâu
+      <div class="seg" id="rmodel"><button type="button" class="f" data-v="STAR" aria-pressed="true">Hành vi × STAR</button><button type="button" class="f" data-v="STEP" aria-pressed="false">Tình huống × STEP</button></div>
+    </div>
+    <label class="lbl">Vị trí ứng tuyển <select id="rpos"><option value="FC">FC – Chuyên viên Tư vấn Tài chính</option><option value="MoA">MoA – Quản lý Agency</option></select></label>
+    <div class="lbl">Chế độ
+      <div class="seg" id="rmode"><button type="button" class="f" data-v="ai" aria-pressed="true">AI đóng vai ứng viên</button><button type="button" class="f" data-v="pair" aria-pressed="false">Luyện theo cặp</button></div>
+    </div>
+    <label class="lbl" id="rstyleWrap">Kiểu ứng viên
+      <select id="rstyle">
+        <option value="chọn ngẫu nhiên một trong các kiểu: nói chung chung; hay nói chúng em; chuyện đẹp thiếu cái giá; trả lời khá tốt">Ngẫu nhiên</option>
+        <option value="hay nói chung chung, dùng 'em thường', 'em luôn' và từ trừu tượng">Hay nói chung chung</option>
+        <option value="kể toàn việc của nhóm, dùng 'chúng em', vai trò riêng mờ nhạt">Hay nói "chúng em"</option>
+        <option value="kể chuyện đẹp, suôn sẻ, giấu khó khăn và cái giá cho tới khi bị hỏi trúng">Chuyện đẹp, thiếu cái giá</option>
+        <option value="trả lời khá đầy đủ, có ví dụ thật nhưng vẫn thiếu 1–2 chữ của khung">Trả lời khá tốt</option>
+      </select>
+    </label>
+    <button type="button" class="go blue" id="rstart">Bắt đầu luyện</button>
+  </div>
+  <div id="rpSession" hidden>
+    <div class="track" id="rtrack"></div>
+    <div class="chat" id="rchat" aria-live="polite"></div>
+    <div id="rinput"></div>
+    <div class="rp-actions"><button type="button" class="copy" id="rend">Kết thúc &amp; nhận phản hồi</button><button type="button" class="copy" id="rreset">Làm lại từ đầu</button></div>
+    <div id="rfb"></div>
+  </div>
+</div></section>
+</main>
+
+<footer class="band"><div class="wrap">Agency Academy · Dựa trên Bộ hướng dẫn phỏng vấn tuyển dụng Behavioural &amp; Situational và phiếu đánh giá FC RED+. Nguồn khung: LIMRA Pacesetter học phần 2.3.</div></footer>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- routing ---------- */
+const views=['nen-tang','lang-nghe','tin-hieu','cau-hoi-fc','role-play','tro-ly'];
+function route(){
+  const h=location.hash.slice(1);const v=views.includes(h)?h:'nen-tang';
+  views.forEach(id=>{document.getElementById(id).hidden=id!==v});
+  document.querySelectorAll('nav a, .tiles a').forEach(a=>{if(a.getAttribute('href')==='#'+v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+  const cur=document.querySelector('nav a[aria-current]');
+  if(cur){const s=cur.parentElement,l=cur.offsetLeft,r=l+cur.offsetWidth;if(l<s.scrollLeft||r>s.scrollLeft+s.clientWidth)s.scrollTo({left:Math.max(0,l-16)})}
+  if(views.includes(h))window.scrollTo(0,document.querySelector('header').offsetHeight);
+}
+addEventListener('hashchange',route);route();
+
+/* ---------- signals ---------- */
+const SIGS=[
+ ['Toàn "chúng em", không có "em"','Chưa rõ vai trò riêng của ứng viên.','Trong việc đó, phần nào là em trực tiếp làm?','A'],
+ ['"Em thường…", "em luôn…"','Đây là quan điểm, chưa phải chuyện đã xảy ra.','Em cho mình một ví dụ gần đây nhất nhé?','S'],
+ ['Không có kết quả, hoặc kết quả không đo được','Chưa đủ bằng chứng để chấm mức cao.','Kết quả cuối cùng ra sao? Đo bằng gì?','R'],
+ ['Câu chuyện quá tròn trịa','Có thể đã được "dọn" trước, thiếu phần thật.','Phần khó nhất trong chuyện đó là gì?','T'],
+ ['Từ trừu tượng: "xử lý rất tốt", "tư vấn tận tình"','Nghe hay nhưng không hình dung được việc đã làm.','Cụ thể em đã làm gì?','A'],
+ ['Câu chuyện "đẹp" nhưng không mất gì','Chính trực, cam kết cần thấy cái giá đã trả.','Lúc đó em đã phải đánh đổi điều gì?','T'],
+ ['Đổ lỗi cho hoàn cảnh, người khác','Chưa thấy tinh thần trách nhiệm.','Phần trách nhiệm của em trong chuyện này là gì?','A'],
+ ['Chuyện đã cách đây nhiều năm','Ứng viên khó nhớ chi tiết; hành vi có thể đã khác.','Có lần nào gần đây hơn, trong 1–2 năm nay không em?','S'],
+ ['Ngập ngừng, đổi ý: "giờ em không còn chắc lắm"','Có điều chưa nói ra, đáng hỏi nối.','Điều gì khiến em thấy vậy?','2'],
+ ['Situational trả lời chung: "em sẽ kiên trì", "em sẽ cố gắng"','Chưa thấy cách làm cụ thể.','Việc đầu tiên em làm là gì? Rồi sau đó?','PS'],
+ ['Situational chỉ có một phương án','Chưa thấy khả năng xoay xở khi cách đầu không được.','Nếu cách đó không được thì em làm sao?','PE'],
+ ['Kể lan man, ra ngoài chủ đề','Mất thời gian của các tiêu chí sau.','Cảm ơn em, vậy kết quả cuối cùng ra sao?','R']
+];
+$('#sigs').innerHTML=SIGS.map(([say,mean,ask,l])=>{
+  const step=l[0]==='P',lt=step?l.slice(1):l;
+  const chip=l==='2'?'<span class="chip cS">Câu mở · tầng 2</span>':`<span class="chip ${step?'cP':'cS'}">${step?'STEP':'STAR'} · ${lt}</span>`;
+  return `<div class="sg"><div class="say">${say}</div><div class="mean">${mean}</div><div class="ask"><small>Hỏi tiếp</small>"${ask}"</div><div>${chip}</div></div>`}).join('');
+
+/* ---------- FC bank ---------- */
+const LAB={STAR:{S:'Bối cảnh',T:'Nhiệm vụ',A:'Hành động',R:'Kết quả',L:'Bài học'},STEP:{S:'Các bước',T:'Lý do',E:'Phương án',P:'Trải nghiệm'}};
+const SUM={STAR:'Nếu mình hiểu đúng thì lúc đó em đã…, kết quả là…, đúng không em?',STEP:'Vậy nếu gặp tình huống đó, em sẽ … trước, rồi …, và nếu không được thì em …, đúng không em?'};
+const G={core:'5 yếu tố cốt lõi',K:'K · Kiến thức',A:'A · Thái độ',S:'S · Kỹ năng',H:'H · Thói quen'};
+const Q=[
+{g:'core',no:'1',p:'Tham vọng',m:'STEP',q:'Nếu mọi thứ diễn ra đúng như bạn mong muốn, cuộc sống và sự nghiệp của bạn sẽ trông như thế nào khi bạn 40 tuổi?',
+ note:'Câu hướng tới tương lai nên đào bằng STEP. Câu hỏi tiếp theo trong phiếu ("Phần quan trọng nhất… và tại sao?") chính là chữ T.',
+ e:['Mục tiêu có con số, mốc thời gian','Lý do cá nhân rõ ràng','Thấy khoảng cách giữa hiện tại và mục tiêu'],
+ pr:['T|Trong bức tranh đó, phần quan trọng nhất với em là gì?','T|Vì sao phần đó quan trọng với em?','S|Nếu đo bằng con số, em muốn đạt mức nào, vào năm nào?','S|Từ hôm nay tới lúc đó, chặng đầu tiên em cần đi qua là gì?','T|So với hiện tại, em thấy mình còn cách mục tiêu đó bao xa?','E|Nếu ba năm tới mọi thứ chậm hơn em nghĩ, em sẽ điều chỉnh thế nào?','P|Em đã từng đặt một mục tiêu lớn và đạt được chưa? Kể mình nghe lần đó nhé.']},
+{g:'core',no:'2',p:'Cam kết',m:'STAR',q:'Trong 12 tháng qua, bạn đã thực hiện những hành động cụ thể nào để tiến gần hơn đến tương lai bạn vừa mô tả?',
+ note:'Tìm "người xây dựng" hay "người mơ mộng": chỉ có ý định là mức 1. Câu hỏi tiếp theo trong phiếu ("hy sinh, đánh đổi, đầu tư gì?") nằm ở chữ A.',
+ e:['Việc đã làm trong 12 tháng, nhất quán','Thứ đã bỏ ra, đánh đổi rõ','Với FC: dự phòng tài chính, sự đồng thuận của gia đình'],
+ pr:['S|Em chọn giúp mình một việc em thấy đáng kể nhất. Việc đó bắt đầu từ lúc nào?','T|Lúc bắt đầu, em đặt cho mình mục tiêu gì?','A|Cụ thể em đã làm những gì? Mỗi tuần em dành bao nhiêu thời gian cho nó?','A|Để làm được việc đó, em đã hy sinh hoặc bớt đi điều gì?','R|Tới giờ kết quả ra sao? Em đo tiến bộ của mình bằng gì?','A|Nếu mấy tháng đầu thu nhập chưa ổn định, em đã chuẩn bị gì cho giai đoạn đó?','S|Gia đình em nghĩ sao về quyết định chọn nghề này?']},
+{g:'core',no:'3',p:'Kiên cường',m:'STAR',q:'Hãy kể cho chúng tôi nghe về một trong những giai đoạn khó khăn nhất trong cuộc sống nghề nghiệp hoặc cá nhân của bạn. Điều gì đã giúp bạn tiếp tục khi mọi thứ không như ý?',
+ note:'Để ý đổ lỗi hoàn cảnh, hoặc vượt qua chủ yếu nhờ người khác (mức 3). Mức 5 cần thấy ứng viên tự đổi cách làm.',
+ e:['Khó khăn thật','Hành động của chính ứng viên','Cách làm đã đổi, bài học đã áp dụng lại'],
+ pr:['S|Chuyện đó xảy ra khi nào? Lúc đó em đang làm gì?','T|Khó nhất ở chỗ nào?','A|Em đã tự mình làm gì để đi tiếp?','A|Phần nào là em tự làm, phần nào có người khác giúp?','A|Có lúc nào em muốn bỏ cuộc không? Lúc đó em đã làm gì?','R|Cuối cùng mọi chuyện ra sao?','L|Sau lần đó, khi gặp khó khăn mới, em làm gì khác đi? Cho mình một ví dụ nhé.']},
+{g:'core',no:'4',p:'Chính trực',m:'STAR',q:'Hãy kể về một lần bạn phải chọn giữa việc làm điều đúng đắn và làm điều có lợi cho bản thân. Bạn đã quyết định như thế nào, và tại sao?',
+ note:'Cẩn thận câu chuyện "đẹp" nhưng không mất gì, hoặc nhiều quan điểm kiểu "với em chữ tín là nhất". Phải tìm ra cái giá đã trả.',
+ e:['Một tình huống có đánh đổi thật','Việc cụ thể ứng viên đã nói và làm','Cái giá đã trả (chỉ tiêu, thu nhập, quan hệ)'],
+ pr:['S|Chuyện đó xảy ra lúc nào, với ai?','T|Lúc đó nếu chọn cách có lợi cho mình, em sẽ được gì?','T|Còn chọn điều đúng thì em mất gì?','A|Cụ thể em đã nói gì, làm gì?','R|Rồi sau đó chuyện ra sao?','R|Em đã phải trả giá thế nào cho lựa chọn đó?','L|Nếu gặp lại, em có làm khác gì không?']},
+{g:'core',no:'5',p:'Học hỏi & thích nghi',m:'STAR',q:'Điều gì đã thay đổi đáng kể cách bạn nhìn nhận về công việc, sự thành công hoặc cuộc sống trong 2–3 năm qua? Điều gì đã tạo ra sự thay đổi đó?',
+ note:'Đổi suy nghĩ mà chưa có hành vi mới chỉ là mức 3. Hỏi tiếp tới khi thấy việc ứng viên đã làm khác đi.',
+ e:['Điều dẫn tới thay đổi','Hành vi đã khác','Kết quả của hành vi mới'],
+ pr:['S|Sự thay đổi đó bắt đầu từ chuyện gì, vào khoảng khi nào?','T|Trước đó em nghĩ thế nào?','T|Điều gì khiến em phải nghĩ lại?','A|Sau khi nghĩ khác, em đã làm gì khác đi? Cho mình một ví dụ cụ thể nhé.','R|Việc làm khác đó mang lại kết quả gì?','L|Có điều gì em vẫn đang cố thay đổi mà chưa làm được không?']},
+{g:'K',no:'K1',p:'Kiến thức',m:'STAR',q:'Hãy kể về một lần bạn phải giải thích một sản phẩm, khái niệm hoặc dịch vụ tài chính cho khách hàng. Bạn đã giải thích như thế nào?',
+ e:['Mô tả rõ bối cảnh khách hàng','Chuyển đổi thuật ngữ sang ngôn ngữ đơn giản','Sử dụng ví dụ thực tế hoặc ẩn dụ','Kiểm tra mức độ hiểu biết của khách hàng'],
+ pr:['S|Khách hàng đó là ai? Lúc đó họ đang cần gì?','T|Điều khó nhất khi giải thích cho người này là gì?','A|Em đã dùng câu chữ, ví dụ nào? Em nói lại cho mình nghe như lúc đó nhé.','A|Làm sao em biết khách đã hiểu đúng?','R|Sau buổi đó khách quyết định thế nào?','L|Nếu giải thích lại, em sẽ đổi điều gì?']},
+{g:'K',no:'K2',p:'Kiến thức',m:'STAR',q:'Bạn có thể chia sẻ một ví dụ khi bạn giúp khách hàng đưa ra quyết định tài chính tốt hơn không?',
+ note:'Câu dạng có/không. Nếu ứng viên chỉ đáp "dạ có", mời kể luôn: "Em kể mình nghe lần đó nhé."',
+ e:['Xác định nhu cầu thực sự','Đưa ra nhiều lựa chọn','Giải thích ưu/nhược điểm và rủi ro/lợi ích','Tránh ép buộc chỉ một sản phẩm'],
+ pr:['S|Khách hàng đó đang ở hoàn cảnh nào, định quyết định chuyện gì?','T|Theo em, nhu cầu thật của họ lúc đó là gì?','A|Em phát hiện ra nhu cầu đó bằng cách nào?','A|Em đã đưa cho khách những lựa chọn nào? Em nói ưu nhược điểm từng cái ra sao?','A|Có lúc nào khách muốn chọn khác với gợi ý của em không? Em xử lý sao?','R|Cuối cùng khách chọn gì? Sau đó họ phản hồi thế nào?']},
+{g:'K',no:'K3',p:'Kiến thức',m:'STAR',q:'Trong công việc trước đây, bạn đã chuẩn bị như thế nào trước khi gặp một khách hàng quan trọng?',
+ note:'Ứng viên dễ trả lời kiểu "em thường…". Xin ngay một lần cụ thể.',
+ e:['Nghiên cứu khách hàng (nghề nghiệp, thu nhập, nhu cầu)','Chuẩn bị câu hỏi mở','Dự đoán phản đối','Chuẩn bị tài liệu hoặc tình huống'],
+ pr:['S|Em chọn giúp mình một lần cụ thể nhé. Khách hàng đó là ai, quan trọng ở điểm nào?','T|Mục tiêu của buổi gặp đó là gì?','A|Trước buổi gặp, em tìm hiểu những gì về khách? Lấy thông tin từ đâu?','A|Em đã chuẩn bị sẵn câu hỏi nào? Cho mình nghe thử một câu.','A|Em có đoán trước khách sẽ phản đối điều gì không?','R|Buổi gặp diễn ra thế nào so với em chuẩn bị?','L|Có điều gì em ước mình đã chuẩn bị kỹ hơn không?']},
+{g:'K',no:'K4',p:'Kiến thức',m:'STAR',q:'Hãy kể về một lần khách hàng hỏi bạn một câu hỏi khó. Bạn đã xử lý như thế nào?',
+ e:['Giữ bình tĩnh và minh bạch','Thừa nhận khi không chắc','Theo dõi với thông tin chính xác'],
+ pr:['S|Câu hỏi đó là gì? Khách hỏi trong hoàn cảnh nào?','T|Vì sao em thấy câu đó khó?','A|Lúc đó em đã trả lời khách thế nào? Em nhắc lại gần đúng lời em nói nhé.','A|Phần nào em chưa chắc? Em xử lý phần đó ra sao?','R|Sau đó em có quay lại với khách không? Khi nào, bằng cách nào?','R|Khách phản ứng thế nào?','L|Lần sau gặp câu tương tự, em làm gì?']},
+{g:'K',no:'K5',p:'Kiến thức',m:'STAR',q:'Bạn đã từng làm việc với khách hàng có thu nhập cao hoặc đòi hỏi cao chưa? Bạn đã học được gì từ trải nghiệm đó?',
+ note:'Câu có/không. Nếu ứng viên chưa từng: chuyển sang Situational, "Nếu tuần sau em gặp một khách như vậy, em sẽ chuẩn bị gì?", rồi đào bằng STEP.',
+ e:['Hiểu kỳ vọng: tính chuyên nghiệp, chuẩn bị, bảo mật','Tập trung tư vấn, không phải bán hàng','Thể hiện tư duy dài hạn'],
+ pr:['S|Em kể mình nghe về một khách cụ thể nhé. Họ là ai, đòi hỏi cao ở điểm nào?','T|Họ kỳ vọng gì ở em mà khách thông thường không đòi hỏi?','A|Em đã làm gì khác đi để đáp ứng họ?','A|Có lần nào em làm họ không hài lòng không? Em xử lý sao?','R|Mối quan hệ với khách đó sau này ra sao?','L|Điều em học được là gì? Em đã áp dụng lại vào lần nào?']},
+{g:'A',no:'A1',p:'Thái độ',m:'STAR',q:'Hãy kể về một lần bạn không đạt được mục tiêu. Bạn đã học được gì từ đó?',
+ e:['Chịu trách nhiệm','Phân tích nguyên nhân gốc rễ','Cho thấy hành động cải thiện rõ ràng'],
+ pr:['S|Mục tiêu đó là gì, vào thời điểm nào?','T|Em được kỳ vọng đạt bao nhiêu? Thực tế đạt bao nhiêu?','A|Khi thấy có nguy cơ không đạt, em đã làm gì?','A|Theo em, phần nguyên nhân nằm ở chính em là gì?','R|Kết quả cuối cùng ra sao?','L|Sau đó em đã thay đổi gì? Lần kế tiếp kết quả thế nào?']},
+{g:'A',no:'A2',p:'Thái độ',m:'STAR',q:'Hãy kể về một lần bạn nhận được phản hồi khó khăn. Bạn đã phản ứng như thế nào?',
+ e:['Lắng nghe cởi mở','Hỏi rõ hơn','Áp dụng phản hồi → cho thấy cải thiện'],
+ pr:['S|Ai góp ý cho em, trong hoàn cảnh nào?','T|Họ góp ý về chuyện gì?','A|Ngay lúc đó em đã nói gì, làm gì?','A|Em có hỏi thêm họ điều gì để hiểu rõ góp ý không?','R|Sau đó em đã thay đổi gì?','R|Người góp ý, hoặc người khác, có nhận ra sự thay đổi đó không?']},
+{g:'A',no:'A3',p:'Thái độ',m:'STAR',q:'Mô tả một tình huống khi bạn muốn bỏ cuộc nhưng quyết định tiếp tục.',
+ e:['Chia sẻ thách thức thực sự','Thể hiện động lực/mục đích bên trong','Giải thích các hành động để tiếp tục'],
+ pr:['S|Chuyện đó xảy ra khi nào? Em đang theo đuổi việc gì?','T|Điều gì khiến em muốn bỏ cuộc?','A|Điều gì giữ em lại?','A|Cụ thể em đã làm gì để đi tiếp?','R|Cuối cùng kết quả ra sao?','L|Lần gần đây nhất em lại muốn bỏ cuộc là khi nào? Lần đó em làm gì?']},
+{g:'A',no:'A4',p:'Thái độ',m:'STAR',q:'Hãy kể về một lần bạn duy trì kỷ luật ngay cả khi không có ai nhìn.',
+ e:['Hệ thống hoặc thói quen rõ ràng','Mục tiêu đo lường được','Theo dõi tiến độ'],
+ pr:['S|Đó là việc gì? Em duy trì nó trong bao lâu?','T|Vì sao em đặt ra việc đó cho mình? Mục tiêu cụ thể là gì?','A|Em làm thế nào để không bỏ giữa chừng?','A|Em theo dõi tiến độ bằng gì?','A|Có ngày nào em không muốn làm không? Hôm đó em làm sao?','R|Sau thời gian đó em đạt được gì? Đo bằng gì?']},
+{g:'A',no:'A5',p:'Thái độ',m:'STAR',q:'Mô tả một tình huống khi bạn chọn làm điều đúng đắn cho khách hàng, dù đó không phải lựa chọn dễ dàng nhất cho bạn.',
+ e:['Đặt lợi ích khách hàng lên trên','Sẵn sàng không chốt nếu không phù hợp'],
+ pr:['S|Khách hàng đó là ai, chuyện xảy ra lúc nào?','T|Lúc đó lựa chọn dễ nhất cho em là gì?','T|Còn điều đúng cho khách là gì?','A|Em đã nói gì với khách?','R|Em đã mất gì vì lựa chọn đó?','R|Khách phản ứng ra sao?','L|Nếu gặp lại, em có làm khác không?']},
+{g:'S',no:'S1',p:'Kỹ năng',m:'STAR',q:'Hãy kể về thương vụ hoặc cơ hội kinh doanh lớn nhất bạn đã thành công chốt được. Bạn đã xác định, tiếp cận và xây dựng mối quan hệ với khách hàng đó như thế nào?',
+ note:'Câu gốc hỏi ba ý một lúc (xác định, tiếp cận, xây dựng quan hệ). Hỏi câu đầu, rồi tách từng ý thành câu đào sâu riêng.',
+ e:['Giải thích rõ nguồn gốc cơ hội','Thể hiện cách tiếp cận khách hàng','Mô tả cách xây dựng sự tin tưởng và mối quan hệ','Giải thích cách xử lý phản đối','Chia sẻ kết quả cuối cùng đạt được'],
+ pr:['S|Cơ hội đó đến từ đâu? Em biết tới khách hàng này bằng cách nào?','T|Thương vụ đó lớn cỡ nào? Khó ở điểm nào?','A|Lần tiếp cận đầu tiên, em đã làm gì?','A|Từ lần đầu tới lúc chốt, em làm gì để khách tin em?','A|Khách có phản đối hay chần chừ gì không? Em đã trả lời ra sao?','R|Kết quả cuối cùng là gì?','R|Giờ em và khách đó còn liên lạc không?']},
+{g:'S',no:'S2',p:'Kỹ năng',m:'STAR',q:'Khi gặp khách hàng lần đầu tiên, bạn thường đặt những câu hỏi gì để hiểu nhu cầu và mục tiêu tài chính của họ?',
+ note:'Chữ "thường" sẽ kéo ra quan điểm. Chuyển ngay sang một lần cụ thể gần nhất.',
+ e:['Tìm hiểu khách hàng trước khi đưa giải pháp','Hoàn cảnh gia đình','Thu nhập và tài sản','Mục tiêu tài chính, kế hoạch tương lai','Mối lo về rủi ro'],
+ pr:['S|Em nhớ lại giúp mình lần gần nhất em gặp một khách mới. Đó là ai?','A|Trong buổi đó em đã hỏi khách những câu nào? Em nói lại vài câu như lúc đó nhé.','A|Câu trả lời nào của khách giúp em hiểu ra nhu cầu thật của họ?','T|Lúc nào em chuyển sang nói về giải pháp? Vì sao chọn lúc đó?','R|Sau buổi đó em biết thêm gì về khách mà trước đó chưa biết?']},
+{g:'S',no:'S3',p:'Kỹ năng',m:'STEP',q:'Nếu ngày mai tôi giới thiệu bạn với một CEO hoặc chủ doanh nghiệp có doanh thu hàng năm hơn 1 triệu USD, bạn sẽ chuẩn bị cho cuộc gặp đó như thế nào?',
+ note:'Câu Situational. Hỏi cùng bộ câu STEP này cho mọi ứng viên để chấm công bằng.',
+ e:['Nghiên cứu doanh nghiệp và ngành của khách','Chuẩn bị câu hỏi phù hợp, sâu sắc','Xác định rõ mục tiêu buổi gặp','Tập trung xây dựng quan hệ trước khi bàn giải pháp'],
+ pr:['S|Sau khi nhận lời giới thiệu, việc đầu tiên em làm là gì? Rồi sau đó?','S|Em sẽ tìm hiểu những thông tin gì về vị CEO và doanh nghiệp đó? Tìm ở đâu?','T|Mục tiêu của em cho buổi gặp đầu tiên là gì? Vì sao em chọn mục tiêu đó?','S|Em sẽ mở đầu câu chuyện thế nào?','E|Nếu vị CEO chỉ dành cho em 10 phút và tỏ ra không mấy quan tâm, em sẽ làm gì?','P|Em từng gặp một khách hàng cấp cao như vậy chưa? Kể mình nghe lần đó nhé.']},
+{g:'S',no:'S4',p:'Kỹ năng',m:'STAR',q:'Lần gần nhất một khách hàng giới thiệu khách hàng mới cho bạn là khi nào? Bạn đã làm gì để có được sự tin tưởng và lời giới thiệu đó?',
+ e:['Thể hiện tư duy quan hệ dài hạn','Hiểu rằng lời giới thiệu đến từ sự tin tưởng và chất lượng dịch vụ','Cung cấp ví dụ thực tế về tạo ra lời giới thiệu'],
+ pr:['S|Người giới thiệu là ai? Em quen họ bao lâu rồi?','T|Lời giới thiệu đó do em chủ động xin, hay khách tự giới thiệu?','A|Trước đó em đã làm gì cho khách này?','A|Khi nhận lời giới thiệu, em liên hệ người mới thế nào?','A|Em có báo lại cho người giới thiệu không?','R|Người được giới thiệu sau đó ra sao?','R|Trong 12 tháng qua, em có khoảng bao nhiêu lời giới thiệu như vậy?']},
+{g:'S',no:'S5',p:'Kỹ năng',m:'STAR',q:'Hãy kể về một lần bạn phải chiếm được sự tin tưởng của khách hàng ban đầu còn hoài nghi hoặc do dự. Bạn đã xử lý tình huống đó như thế nào?',
+ e:['Xây dựng sự tin tưởng trước khi bán hàng','Kỹ năng lắng nghe tốt, hiểu thật nhu cầu khách hàng','Dựa vào uy tín cá nhân và tạo giá trị thay vì áp lực bán hàng'],
+ pr:['S|Khách đó là ai? Họ hoài nghi điều gì?','T|Theo em, vì sao họ hoài nghi?','A|Em đã làm gì đầu tiên để khách bớt dè chừng?','A|Có lúc nào em muốn đẩy nhanh để chốt không? Lúc đó em làm gì?','R|Điều gì cho thấy cuối cùng khách đã tin em?','L|Từ lần đó, em rút ra điều gì cho những khách còn do dự?']},
+{g:'H',no:'H1',p:'Thói quen',m:'STAR',q:'Vui lòng chia sẻ cách bạn xây dựng và hoàn thiện Danh sách P100 của mình.',
+ note:'Có xác minh P100: nếu được, xin xem danh sách thật (che thông tin liên lạc). Ghi bằng chứng, ví dụ "khoảng 30 tên, chưa phân nhóm".',
+ e:['Có phương pháp rõ ràng để xây dựng danh sách','Nguồn đa dạng: bạn bè, đồng nghiệp, khách hàng hiện tại','Hiểu mục đích Danh sách P100','Áp dụng phân loại/ưu tiên'],
+ pr:['S|Danh sách P100 của em hiện có bao nhiêu tên? Em bắt đầu làm từ khi nào?','A|Em lấy tên từ những nguồn nào? Mỗi nguồn khoảng bao nhiêu người?','A|Em phân nhóm, ưu tiên danh sách thế nào? Cho mình nghe vài nhóm nhé.','T|Theo em, danh sách này sẽ dùng để làm gì trong ba tháng đầu?','R|Trong tháng qua, em đã liên lạc với bao nhiêu người trong danh sách?']},
+{g:'H',no:'H2',p:'Thói quen',m:'STEP',q:'Bạn lên kế hoạch và phân bổ thời gian như thế nào cho vai trò này, đặc biệt khi xem xét nó đòi hỏi cam kết dài hạn và nỗ lực nhất quán?',
+ note:'Câu hỏi về việc sẽ làm, nên đào bằng STEP. Chữ P mở đường sang bằng chứng thật.',
+ e:['Kế hoạch thời gian thực tế và cam kết','Ưu tiên hoạt động phù hợp mục tiêu kinh doanh','Kỷ luật và chủ động lịch trình'],
+ pr:['S|Một tuần làm việc của em trong ba tháng đầu sẽ trông thế nào? Kể từ thứ Hai giúp mình nhé.','S|Mỗi tuần em dự tính dành bao nhiêu giờ cho việc gặp khách?','T|Vì sao em ưu tiên những việc đó trước?','T|Để có thời gian đó, em sẽ phải bớt hoặc bỏ việc gì?','E|Nếu có tuần em không hẹn được khách nào, em sẽ làm gì?','P|Trước đây em đã từng tự quản một lịch làm việc như vậy chưa? Kể mình nghe nhé.']},
+{g:'H',no:'H3',p:'Thói quen',m:'STAR',q:'Bạn duy trì liên hệ thường xuyên với mạng lưới như thế nào để đảm bảo các mối quan hệ luôn hoạt động và có thể tạo ra cơ hội?',
+ note:'Câu hỏi về thói quen chung. Kéo về việc thật trong tuần vừa rồi.',
+ e:['Duy trì mối quan hệ chủ động (không ngẫu nhiên)','Có các điểm tiếp xúc thường xuyên (tin nhắn, cuộc gặp, theo dõi)','Liên kết xây dựng mối quan hệ với cơ hội kinh doanh'],
+ pr:['S|Tuần vừa rồi em đã liên lạc với những ai trong mạng lưới của mình?','A|Em giữ liên lạc bằng cách nào? Bao lâu một lần?','A|Em dùng gì để nhớ ai cần liên lạc lại?','A|Với một người lâu rồi không gặp, lần gần nhất em mở lời lại thế nào?','R|Kể mình nghe một lần việc giữ liên lạc đó mang lại cơ hội cụ thể.']},
+{g:'H',no:'H4',p:'Thói quen',m:'STAR',q:'Bạn tuân theo những thói quen hàng ngày hoặc hàng tuần nào để duy trì kỷ luật và nhất quán làm việc hướng tới mục tiêu?',
+ note:'Dễ nhận về danh sách thói quen "đẹp". Hỏi tới lần gần nhất ứng viên thực sự làm.',
+ e:['Thói quen có cấu trúc rõ ràng','Thực thi nhất quán (không phụ thuộc tâm trạng)','Ví dụ cụ thể và thực tế','Duy trì nỗ lực khi chưa có kết quả ngay'],
+ pr:['S|Em kể mình nghe một thói quen em đang giữ đều nhất. Em giữ nó bao lâu rồi?','A|Tuần này em đã làm thói quen đó chưa? Làm lúc nào?','A|Em theo dõi việc mình có làm đều hay không bằng cách nào?','A|Những ngày mệt hoặc không có hứng, em làm sao?','R|Thói quen đó giúp em đạt được kết quả gì cụ thể?']},
+{g:'H',no:'H5',p:'Thói quen',m:'STAR',q:'Bạn thực hiện những hành động gì để xây dựng và duy trì hình ảnh chuyên nghiệp cả trực tuyến và ngoài đời thực?',
+ e:['Nhận thức rõ hình ảnh chuyên nghiệp ảnh hưởng tới uy tín','Trực tuyến: hồ sơ chuyên nghiệp, kiểm soát nội dung chia sẻ','Ngoài đời thực: phong thái, giao tiếp phù hợp, nhất quán'],
+ pr:['S|Nếu bây giờ mình mở trang mạng xã hội em dùng nhiều nhất, mình sẽ thấy gì?','A|Gần đây nhất em đã chỉnh, đăng hoặc gỡ nội dung gì vì muốn giữ hình ảnh chuyên nghiệp?','A|Lần gần nhất đi gặp khách, em đã chuẩn bị gì về hình ảnh, tác phong?','T|Theo em, hình ảnh đó ảnh hưởng thế nào tới việc khách tin em?','R|Đã có ai nhận xét về hình ảnh của em chưa? Họ nói gì?']}
+];
+
+let pron=store.get('ds-pron','em'),filt='all',openId=null;
+const checked=store.get('ds-checked',{});
+const swap=t=>pron==='em'?t:t.replace(/(^|[\s(“"'])([Ee])m(?=$|[\s,.?!…:;)”"'])/g,(m,a,b)=>a+(b==='E'?'Anh/chị':'anh/chị'));
+const ARR='<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+const INFO='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>';
+
+function renderFilters(){
+  const keys=['all',...Object.keys(G)];
+  $('#filters').innerHTML=keys.map(k=>`<button class="f" type="button" data-f="${k}" aria-pressed="${filt===k}">${k==='all'?'Tất cả':G[k]}</button>`).join('')+
+  `<div class="toggle">Xưng hô <button class="f" type="button" data-p="em" aria-pressed="${pron==='em'}">mình – em</button><button class="f" type="button" data-p="ac" aria-pressed="${pron==='ac'}">mình – anh/chị</button></div>`;
+}
+function renderQ(){
+  $('#qlist').innerHTML=Q.filter(x=>filt==='all'||x.g===filt).map(x=>{
+    const isOpen=openId===x.no, ms=x.m==='STAR'?'mS':'mP', type=x.m==='STAR'?'Behavioural':'Situational';
+    const ck=checked[x.no]||[];
+    let body='';
+    if(isOpen){
+      body=`<div class="qb" id="qb-${x.no}">
+        <div class="remind">${INFO}<span><b>Hỏi từng câu một.</b> Chờ ứng viên trả lời xong, nghe trọn, rồi mới chọn câu tiếp theo. Dừng khi đã đủ bằng chứng.</span></div>
+        ${x.note?`<div class="note"><b>Lưu ý:</b> ${x.note}</div>`:''}
+        <ul class="probes ${ms}">${x.pr.map((s,i)=>{const[l,t]=s.split('|');return `<li><label><input type="checkbox" data-q="${x.no}" data-i="${i}" ${ck.includes(i)?'checked':''}><span class="lt">${l}<small>${LAB[x.m][l]}</small></span><span class="pt">${esc(swap(t))}</span></label></li>`}).join('')}</ul>
+        <div class="sum"><small>Tóm tắt xác nhận (tầng 4)</small>"${esc(swap(SUM[x.m]))}"</div>
+        <div class="exp"><small>Kỳ vọng từ ứng viên (theo phiếu)</small><ul>${x.e.map(e=>`<li>${e}</li>`).join('')}</ul></div>
+        <button class="reset" type="button" data-r="${x.no}">Bỏ đánh dấu, dùng cho ứng viên mới</button>
+      </div>`}
+    return `<div class="q${isOpen?' open':''}"><button class="qh" type="button" data-o="${x.no}" aria-expanded="${isOpen}">
+      <span class="no">${x.no}</span>
+      <span><span class="meta"><span class="pill">${G[x.g]}${x.g==='core'?' · '+x.p:''}</span><span class="chip ${x.m==='STAR'?'cS':'cP'}">${type} · ${x.m}</span></span><span class="txt">${x.q}</span></span>
+      ${ARR}</button>${body}</div>`}).join('');
+}
+renderFilters();renderQ();
+$('#filters').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.f){filt=b.dataset.f;openId=null}
+  if(b.dataset.p){setPron(b.dataset.p);return}
+  renderFilters();renderQ();
+});
+$('#qlist').addEventListener('click',e=>{
+  const o=e.target.closest('[data-o]');
+  if(o){openId=openId===o.dataset.o?null:o.dataset.o;renderQ();if(openId){const el=o.closest('.q');el.scrollIntoView({block:'nearest'})}return}
+  const r=e.target.closest('[data-r]');
+  if(r){delete checked[r.dataset.r];store.set('ds-checked',checked);renderQ()}
+});
+$('#qlist').addEventListener('change',e=>{
+  const c=e.target;if(!c.dataset.q)return;
+  const a=new Set(checked[c.dataset.q]||[]);c.checked?a.add(+c.dataset.i):a.delete(+c.dataset.i);
+  checked[c.dataset.q]=[...a];store.set('ds-checked',checked);
+});
+
+/* ---------- shared AI ---------- */
+const KB=`KIẾN THỨC NỀN (Bộ hướng dẫn phỏng vấn Behavioural & Situational, RED+):
+- Câu Hành vi (Behavioural) hỏi việc ứng viên ĐÃ làm, mẫu "Kể mình nghe lần gần nhất em…" → đào sâu bằng STAR: S Situation (ở đâu, khi nào, với ai), T Task (thách thức, cần đạt gì, vì sao), A Action (chính ứng viên làm gì, làm thế nào; phần nào của em, phần nào của nhóm), R Results (kết quả đo được, sự ghi nhận), L Lesson tùy chọn (bài học, việc đã áp dụng lại).
+- Câu Tình huống (Situational) hỏi việc ứng viên SẼ làm, mẫu "Nếu… thì em sẽ làm gì?" → đào sâu bằng STEP: S Steps (làm gì trước, gì sau), T Thinking (vì sao chọn cách đó, chấp nhận đánh đổi gì), E Else (phương án dự phòng nếu không được), P Past (đã từng gặp chuyện tương tự chưa; có thì chuyển sang STAR). Câu Tình huống tốt phải có thế khó thật: hai lựa chọn đều có lý và kéo về hai hướng.
+- Phễu 4 tầng: 1 câu chính; 2 câu mở ("Rồi sao nữa em?"); 3 câu thăm dò (STAR/STEP); 4 câu đóng/tóm tắt xác nhận.
+- LANCE: Lắng nghe (im lặng 3–5 giây), Accurate & complete (hỏi "cụ thể em đã làm gì?"), Neutral (không khen chê, không gợi ý đáp án), Control (kéo về chủ đề), Equal opportunity (chỉ hỏi điều liên quan công việc; không hỏi hôn nhân, kế hoạch sinh con, tuổi tác).
+- 7 quy tắc đặt câu: mỗi lần một câu; chung → cụ thể; hỏi nối theo câu trả lời; không lộ bài; cụ thể thay vì chung chung; không mở đầu bằng câu khó; không tra hỏi.
+- Tín hiệu cần đào: toàn "chúng em" không có "em" → hỏi A; "em thường/em luôn" → xin ví dụ gần nhất; không có kết quả đo được → hỏi R; chuyện quá tròn trịa → hỏi phần khó nhất; từ trừu tượng → hỏi cụ thể; câu chuyện đẹp nhưng không mất gì → hỏi cái giá; đổ lỗi hoàn cảnh → hỏi phần trách nhiệm của em; chuyện quá xa → hỏi lần trong 1–2 năm gần đây; câu Tình huống trả lời chung ("em sẽ kiên trì") → hỏi bước đầu tiên; chỉ một phương án → hỏi E.
+- 5 tiêu chuẩn câu hỏi tốt: đúng tiêu chí; hỏi việc đã làm hoặc tình huống có thế khó thật; không có đáp án hiển nhiên; không dẫn dắt, không phải câu có/không; có câu đào sâu về hành động và về kết quả/cái giá.
+- Tiêu chí RED+: Tham vọng, Cam kết, Kiên cường, Chính trực, Học hỏi & thích nghi; FC: Khám phá nhu cầu & xây dựng niềm tin, Thói quen hoạt động & mạng lưới; MoA: Tuyển dụng & phát triển con người, Quản trị hiệu suất & chất lượng.`;
+const LONG={STAR:{S:'Situation · Bối cảnh',T:'Task · Nhiệm vụ',A:'Action · Hành động',R:'Results · Kết quả',L:'Lesson · Bài học (tùy chọn)'},STEP:{S:'Steps · Các bước',T:'Thinking · Lý do',E:'Else · Phương án khác',P:'Past · Trải nghiệm thật'}};
+const LETTERS={STAR:['S','T','A','R','L'],STEP:['S','T','E','P']};
+const loading=t=>`<div class="empty"><div class="dots"><span></span><span></span><span></span></div><p>${t}</p></div>`;
+let samplerP=null;
+const getSampler=()=>{if(!samplerP)samplerP=(window.claude&&window.claude.use)?window.claude.use('sample').catch(()=>null):Promise.resolve(null);return samplerP};
+function parseJSON(t){t=String(t||'').trim();const a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<a)throw new Error('bad');return JSON.parse(t.slice(a,b+1))}
+async function askJSON(prompt){
+  const s=await getSampler();if(!s)throw{code:'unavailable'};
+  const opts={modelTier:'default',cache:false};let d=null;
+  if(typeof s.json==='function'){try{d=await s.json(prompt,opts)}catch(e){if(e&&e.code)throw e;d=null}}
+  if(!d||typeof d!=='object'){const r=await s(prompt,opts);d=parseJSON(r.text)}
+  return d;
+}
+const AI_URL='https://claude.ai/artifact/D1GGzjFLbLcdthL2a5MHwH';
+const errMsg=err=>{const c=err&&err.code;return c==='unavailable'?'Phần AI chỉ chạy trên Claude. Mở bản trên Claude (cần đăng nhập) để dùng Trợ lý và Role play.':c==='not_granted'?'Trang chưa được phép hỏi Claude. Bấm lại và chọn cho phép khi được hỏi.':c==='rate_limited'?'AI đang bận, đợi khoảng một phút rồi thử lại nhé.':'Chưa nhận được phản hồi. Thử bấm lại một lần nữa nhé.'};
+const arr=a=>Array.isArray(a)?a:[];
+const errHTML=err=>`<div class="err">${esc(errMsg(err))}${err&&err.code==='unavailable'?` <a href="${AI_URL}" style="color:inherit;font-weight:700">Mở bản trên Claude →</a>`:''}</div>`;
+const up1=s=>String(s||'').trim().toUpperCase().slice(0,1);
+
+function setPron(p){pron=p;store.set('ds-pron',p);renderFilters();renderQ();document.querySelectorAll('#apron [data-p]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.p===p))}
+$('#apron').addEventListener('click',e=>{const b=e.target.closest('[data-p]');if(b)setPron(b.dataset.p)});
+setPron(pron);
+
+/* ---------- assistant ---------- */
+$('#aq').value=store.get('ds-topic','');
+$('#aq').addEventListener('input',()=>{store.set('ds-topic',$('#aq').value);$('#aq').classList.remove('need')});
+let aBusy=false;
+document.querySelectorAll('.pk').forEach(b=>b.addEventListener('click',()=>runAssist(b.dataset.m)));
+function assistPrompt(topic,m){
+  const you=pron==='em'?'em':'anh/chị';
+  return `Bạn là trợ lý cho hội đồng phỏng vấn tuyển dụng RED+ (Agency Academy, Prudential Việt Nam).
+${KB}
+
+Người phỏng vấn nhập câu hỏi hoặc chủ đề: """${topic}"""
+Vị trí: ${$('#apos').value}. Khung đã chọn: ${m==='STAR'?'Hành vi × STAR (hỏi việc ứng viên đã làm)':'Tình huống × STEP (hỏi việc ứng viên sẽ làm)'}.
+
+Hãy tạo một KHUNG GỢI Ý để người phỏng vấn tự chọn câu theo câu trả lời thật:
+- "main": 2 câu chính (tầng 1) đúng loại đã chọn, bám chủ đề. Nếu người dùng đã gõ sẵn một câu hỏi, câu đầu giữ ý câu đó nhưng chỉnh cho đúng loại đã chọn và đúng 5 tiêu chuẩn.${m==='STEP'?' Câu Tình huống phải có thế khó thật.':''}
+- "steps": đủ các bước ${m==='STAR'?'S, T, A, R, L':'S, T, E, P'}, đúng thứ tự. Mỗi bước có "need" (cần nghe được gì, tối đa 12 chữ) và "options": 3–4 câu đào sâu khác góc độ, bám sát chủ đề.
+- "tip": một lưu ý ngắn về tín hiệu dễ gặp với chủ đề này (tối đa 25 chữ).
+- "summary": câu tóm tắt xác nhận tầng 4, có chỗ trống "…".
+Cách viết: tiếng Việt nói tự nhiên như người Việt nói chuyện, không văn dịch. Xưng "mình", gọi ứng viên là "${you}". Mỗi câu là MỘT câu hỏi ngắn (tối đa khoảng 20 chữ), không dẫn dắt, không lộ đáp án, không phải câu có/không. Không hỏi hôn nhân, sinh con, tuổi tác.
+Nếu nội dung không liên quan tới phỏng vấn tuyển dụng, trả {"error":"<một câu giải thích ngắn, thân thiện>"}.
+CHỈ trả JSON hợp lệ, không markdown: {"main":["",""],"steps":[{"letter":"S","need":"","options":["","",""]}],"tip":"","summary":""}`;
+}
+async function runAssist(m){
+  const topic=$('#aq').value.trim();
+  if(!topic){$('#aq').classList.add('need');$('#aq').focus();return}
+  if(aBusy)return;aBusy=true;
+  document.querySelectorAll('.pk').forEach(b=>{b.disabled=true;b.setAttribute('aria-pressed',b.dataset.m===m)});
+  const out=$('#aout');out.innerHTML=loading('Đang soạn khung gợi ý…');out.scrollIntoView({behavior:'smooth',block:'start'});
+  try{renderAssist(await askJSON(assistPrompt(topic,m)),m,topic)}
+  catch(err){out.innerHTML=errHTML(err)}
+  finally{aBusy=false;document.querySelectorAll('.pk').forEach(b=>b.disabled=false)}
+}
+function renderAssist(d,m,topic){
+  const out=$('#aout');
+  if(d.error){out.innerHTML=`<div class="err">${esc(d.error)}</div>`;return}
+  const st=m==='STEP',steps=arr(d.steps),main=arr(d.main);
+  out.innerHTML=`<div class="ares">
+    <div class="ahead"><span class="chip ${st?'cP':'cS'}">${st?'Tình huống × STEP':'Hành vi × STAR'}</span><span class="small">Chủ đề: ${esc(topic)}</span></div>
+    <div class="remind">${INFO}<span><b>Đây chỉ là khung gợi ý.</b> Mỗi bước chọn một câu hợp với câu trả lời thật, hỏi từng câu một. Ứng viên đã tự nói rồi thì bỏ qua bước đó.</span></div>
+    ${main.length?`<div class="mainq"><small>Câu chính gợi ý · tầng 1</small>${main.map(x=>`<p>"${esc(x)}"</p>`).join('')}</div>`:''}
+    <div class="steps">${steps.map(s=>{const l=up1(s.letter);return `<details class="stp" open><summary><span class="L ${st?'lp':'ls'}">${esc(l)}</span><span><b>${esc(LONG[m][l]||l)}</b><span class="need">${esc(s.need)}</span></span>${ARR}</summary><ul class="opts">${arr(s.options).map(o=>`<li><label><input type="checkbox"><span>${esc(o)}</span></label></li>`).join('')}</ul></details>`}).join('')}</div>
+    ${d.tip?`<div class="note"><b>Lưu ý:</b> ${esc(d.tip)}</div>`:''}
+    ${d.summary?`<div class="sum"><small>Tóm tắt xác nhận · tầng 4</small>"${esc(d.summary)}"</div>`:''}
+    <div class="arow2"><button class="copy" type="button" id="acp">Sao chép khung</button><button class="copy" type="button" id="aagain">Gợi ý bộ khác</button></div>
+  </div>`;
+  $('#acp').onclick=async ev=>{
+    const txt=[...main.map(x=>'Câu chính: '+x),...steps.flatMap(s=>{const l=up1(s.letter);return [`${l} – ${LONG[m][l]||''}`,...arr(s.options).map(o=>'  • '+o)]}),d.summary?'Tóm tắt: '+d.summary:''].filter(Boolean).join('\n');
+    try{await navigator.clipboard.writeText(txt);ev.target.textContent='Đã sao chép'}catch(e){ev.target.textContent='Không sao chép được'}
+  };
+  $('#aagain').onclick=()=>runAssist(m);
+}
+
+/* ---------- role play ---------- */
+const rq=$('#rq');
+rq.innerHTML=Object.keys(G).map(g=>`<optgroup label="${G[g]}">${Q.filter(x=>x.g===g).map(x=>`<option value="${x.no}">${x.no}. ${esc(x.q.length>72?x.q.slice(0,70)+'…':x.q)}</option>`).join('')}</optgroup>`).join('')+'<option value="custom">Tự nhập câu hỏi khác…</option>';
+const rp={mode:'ai',cm:'STAR',msgs:[],profile:'',busy:false,err:'',retry:null,ended:false,sid:0};
+function seg(sel,cb){$(sel).addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(!b)return;$(sel).querySelectorAll('[data-v]').forEach(x=>x.setAttribute('aria-pressed',x===b));cb(b.dataset.v)})}
+seg('#rmode',v=>{rp.mode=v;$('#rstyleWrap').hidden=v!=='ai'});
+seg('#rmodel',v=>{rp.cm=v});
+$('#rqc').addEventListener('input',()=>$('#rqc').classList.remove('need'));
+rq.addEventListener('change',()=>{const c=rq.value==='custom';$('#rqc').hidden=!c;$('#rmWrap').hidden=!c;if(c)$('#rqc').focus()});
+$('#rstart').addEventListener('click',()=>{
+  let q,m;
+  if(rq.value==='custom'){q=$('#rqc').value.trim();m=rp.cm;if(!q){$('#rqc').classList.add('need');$('#rqc').focus();return}}
+  else{const x=Q.find(y=>y.no===rq.value);q=x.q;m=x.m}
+  Object.assign(rp,{q,m,pos:$('#rpos').value,style:$('#rstyle').value,profile:'',msgs:[{who:'i',text:q}],err:'',ended:false,sid:rp.sid+1});
+  $('#rpSetup').hidden=true;$('#rpSession').hidden=false;$('#rfb').innerHTML='';
+  if(rp.mode==='ai')aiTurn();else renderRP();
+});
+const covered=()=>{for(let i=rp.msgs.length-1;i>=0;i--){const c=rp.msgs[i].coach;if(c)return arr(c.covered).map(up1)}return[]};
+const transcript=()=>rp.msgs.map(x=>(x.who==='i'?'PV: ':'UV: ')+x.text).join('\n');
+const posName=()=>rp.pos==='MoA'?'MoA – Quản lý Agency':'FC – Chuyên viên Tư vấn Tài chính';
+const coachSpec=`- "q_feedback": 1–2 câu nhận xét câu PV gần nhất theo LANCE và 7 quy tắc đặt câu (hỏi dồn, dẫn dắt, có/không, chung chung, tra hỏi, hỏi điều không liên quan công việc). Nếu câu tốt, nói ngắn vì sao tốt.
+- "covered": các chữ của khung mà ứng viên đã đưa ra bằng chứng RÕ RÀNG, tính trên toàn hội thoại.
+- "signals": 0–3 cụm từ ngắn trích nguyên văn từ câu trả lời mới nhất của ứng viên cho thấy cần đào tiếp.
+- "next": MỘT câu nên hỏi tiếp, xưng "mình", gọi ứng viên là "em".`;
+function aiPrompt(){return `Bạn đóng HAI vai trong một buổi luyện phỏng vấn tuyển dụng RED+ (Agency Academy, Prudential Việt Nam): (1) ỨNG VIÊN vị trí ${posName()}, (2) HUẤN LUYỆN VIÊN nhận xét cách hỏi của người phỏng vấn.
+${KB}
+
+Câu hỏi chính: "${rp.q}". Khung đào sâu: ${rp.m} (${LETTERS[rp.m].join(', ')}).
+Kiểu ứng viên: ${rp.style}.
+${rp.profile?'Hồ sơ ứng viên đã tạo, giữ nhất quán tuyệt đối: '+rp.profile:'Đây là lượt đầu: tự tạo hồ sơ ứng viên ngắn, thực tế với thị trường Việt Nam (nghề cũ, số năm kinh nghiệm, MỘT câu chuyện cụ thể có đủ chi tiết cho mọi chữ của khung, kể cả khó khăn hoặc cái giá), ghi vào "profile" tối đa 80 chữ.'}
+
+Hội thoại (PV = người phỏng vấn, UV = ứng viên):
+${transcript()}
+
+VAI ỨNG VIÊN, trả lời câu PV cuối cùng:
+- Như một người Việt thật đang đi phỏng vấn: 2–5 câu, văn nói tự nhiên, xưng "em", gọi người phỏng vấn là "anh/chị".
+- Không tự kể đủ mọi chi tiết. Chỉ nói rõ đúng phần được hỏi cụ thể; phần chưa được hỏi thì nói lướt hoặc bỏ qua.
+- Thể hiện đúng kiểu ứng viên đã chọn.
+- Nếu PV hỏi dồn nhiều câu một lúc, chỉ trả lời câu cuối. Nếu PV hỏi câu dẫn dắt hoặc có/không, trả lời ngắn theo hướng được gợi ý. Nếu PV hỏi về hôn nhân, sinh con, tuổi tác, trả lời ngắn và hơi lúng túng.
+- Không nhắc tới STAR, STEP hay vai huấn luyện viên.
+VAI HUẤN LUYỆN VIÊN:
+${coachSpec}
+CHỈ trả JSON hợp lệ, không markdown: {"profile":"","reply":"","coach":{"q_feedback":"","covered":[],"signals":[],"next":""}}`}
+function pairPrompt(){return `Bạn là HUẤN LUYỆN VIÊN trong một buổi luyện phỏng vấn theo cặp (RED+, Agency Academy, Prudential Việt Nam), vị trí ${posName()}. Một người đóng vai ứng viên, người kia là người phỏng vấn đang luyện đào sâu.
+${KB}
+
+Câu hỏi chính: "${rp.q}". Khung đào sâu: ${rp.m} (${LETTERS[rp.m].join(', ')}).
+Hội thoại (PV = người phỏng vấn, UV = ứng viên):
+${transcript()}
+
+Phân tích câu trả lời mới nhất của UV và câu PV ngay trước nó:
+${coachSpec}
+CHỈ trả JSON hợp lệ, không markdown: {"q_feedback":"","covered":[],"signals":[],"next":""}`}
+function endPrompt(){return `Bạn là HUẤN LUYỆN VIÊN phỏng vấn RED+ (Agency Academy, Prudential Việt Nam).
+${KB}
+
+Câu hỏi chính: "${rp.q}". Khung đào sâu: ${rp.m} (${LETTERS[rp.m].join(', ')}). Vị trí: ${posName()}.
+Bản ghi buổi luyện (PV = người phỏng vấn, UV = ứng viên):
+${transcript()}
+
+Đánh giá NGƯỜI PHỎNG VẤN: cách đặt câu và đào sâu. Viết tiếng Việt tự nhiên, ngắn gọn, thân thiện.
+CHỈ trả JSON hợp lệ, không markdown: {"covered":[],"did_well":["2–3 ý ngắn"],"improve":["2–3 ý cụ thể, kèm câu hỏi mẫu tốt hơn khi phù hợp"],"evidence":"2–3 câu tóm tắt bằng chứng đã thu về ứng viên","score":"mức 1–5 có thể chấm với bằng chứng hiện có, hoặc Chưa đủ bằng chứng","score_why":"1 câu"}`}
+
+function coachHTML(c,open){
+  if(!c)return'';
+  const sig=arr(c.signals);
+  return `<details class="coach"${open?' open':''}><summary>Gợi ý của huấn luyện viên</summary>${c.q_feedback?`<p><b>Câu bạn vừa hỏi:</b> ${esc(c.q_feedback)}</p>`:''}${sig.length?`<p><b>Tín hiệu cần đào:</b> ${sig.map(s=>`"${esc(s)}"`).join(' · ')}</p>`:''}${c.next?`<p><b>Có thể hỏi tiếp:</b> "${esc(c.next)}"</p>`:''}</details>`;
+}
+function renderRP(){
+  const cov=covered(),tp=rp.m==='STEP'?' tp':'';
+  $('#rtrack').innerHTML=`<span class="small" style="font-weight:600">Bằng chứng đã thu</span>${LETTERS[rp.m].map(l=>`<span class="tk${cov.includes(l)?' on':''}${tp}" title="${LONG[rp.m][l]}">${l}</span>`).join('')}<span class="chip ${tp?'cP':'cS'}">${tp?'Tình huống × STEP':'Hành vi × STAR'}</span>`;
+  $('#rchat').innerHTML=rp.msgs.map((x,i)=>x.who==='i'
+    ?`<div class="msg mi"><small>${i===0?'Câu hỏi chính':'Bạn hỏi'}</small>${esc(x.text)}</div>`
+    :`<div class="msg mc"><small>Ứng viên</small>${esc(x.text)}</div>${coachHTML(x.coach,rp.mode==='pair'&&i===rp.msgs.length-1)}`).join('')
+    +(rp.busy?`<div class="msg mc"><div class="dots"><span></span><span></span><span></span></div></div>`:'');
+  const last=rp.msgs[rp.msgs.length-1];let h='';
+  if(rp.err)h=`${rp.errH||`<div class="err">${esc(rp.err)}</div>`}<button type="button" class="go blue" id="rretry">Thử lại</button>`;
+  else if(!rp.ended&&!rp.busy){
+    if(rp.mode==='ai'){if(last.who==='c')h=`<label class="lbl">Câu hỏi tiếp theo của bạn<textarea id="rin" placeholder="Hỏi từng câu một…"></textarea></label><button type="button" class="go blue" id="rsend">Gửi câu hỏi</button>`}
+    else if(last.who==='i')h=`<label class="lbl">Ứng viên trả lời (ghi lại lời bạn diễn vai)<textarea id="rin" placeholder="Gõ tóm tắt hoặc nguyên văn câu trả lời…"></textarea></label><button type="button" class="go blue" id="rsend">Phân tích &amp; gợi ý</button>`;
+    else h=`<label class="lbl">Câu bạn hỏi tiếp<textarea id="rin" placeholder="Hỏi từng câu một…"></textarea></label><button type="button" class="go blue" id="rsend">Ghi lại câu hỏi</button>`;
+  }
+  $('#rinput').innerHTML=h;
+  const s=$('#rsend');if(s)s.addEventListener('click',sendRP);
+  const r=$('#rretry');if(r)r.addEventListener('click',()=>{rp.err='';rp.errH='';const f=rp.retry;f&&f()});
+  $('#rend').hidden=rp.ended||!rp.msgs.some(x=>x.who==='c');
+}
+const toInput=()=>{const el=$('#rinput');if(el)el.scrollIntoView({behavior:'smooth',block:'nearest'})};
+function sendRP(){
+  const el=$('#rin'),t=el.value.trim();if(!t){el.classList.add('need');el.focus();return}
+  const last=rp.msgs[rp.msgs.length-1];
+  if(rp.mode==='ai'){rp.msgs.push({who:'i',text:t});aiTurn();return}
+  if(last.who==='i'){rp.msgs.push({who:'c',text:t});pairTurn()}else{rp.msgs.push({who:'i',text:t});renderRP();toInput()}
+}
+async function aiTurn(){
+  const sid=rp.sid;rp.busy=true;rp.retry=aiTurn;renderRP();toInput();
+  try{const d=await askJSON(aiPrompt());if(sid!==rp.sid)return;if(!rp.profile&&d.profile)rp.profile=String(d.profile);rp.msgs.push({who:'c',text:String(d.reply||'…'),coach:d.coach||null})}
+  catch(err){if(sid===rp.sid){rp.err=errMsg(err);rp.errH=errHTML(err)}}
+  finally{if(sid===rp.sid){rp.busy=false;renderRP();toInput();const t=$('#rin');if(t)t.focus({preventScroll:true})}}
+}
+async function pairTurn(){
+  const sid=rp.sid;rp.busy=true;rp.retry=pairTurn;renderRP();toInput();
+  try{const d=await askJSON(pairPrompt());if(sid!==rp.sid)return;rp.msgs[rp.msgs.length-1].coach=d}
+  catch(err){if(sid===rp.sid){rp.err=errMsg(err);rp.errH=errHTML(err)}}
+  finally{if(sid===rp.sid){rp.busy=false;renderRP();toInput()}}
+}
+$('#rend').addEventListener('click',async()=>{
+  if(rp.busy)return;const sid=rp.sid;rp.ended=true;renderRP();
+  $('#rfb').innerHTML=loading('Đang tổng hợp phản hồi…');$('#rfb').scrollIntoView({behavior:'smooth',block:'nearest'});
+  try{
+    const d=await askJSON(endPrompt());if(sid!==rp.sid)return;
+    const cov=arr(d.covered).map(up1),tp=rp.m==='STEP'?' tp':'';
+    $('#rfb').innerHTML=`<div class="fb"><h3>Phản hồi cho người phỏng vấn</h3>
+      <div><small>Bằng chứng đã thu theo ${rp.m}</small><div class="fbtrack">${LETTERS[rp.m].map(l=>`<span class="tk${cov.includes(l)?' on':''}${tp}">${l}</span>`).join('')}</div></div>
+      ${d.evidence?`<p><b>Bằng chứng về ứng viên:</b> ${esc(d.evidence)}</p>`:''}
+      ${d.score?`<p><b>Có thể chấm:</b> ${esc(d.score)}${d.score_why?' · '+esc(d.score_why):''}</p>`:''}
+      <div class="grid2"><div><b>Làm tốt</b><ul>${arr(d.did_well).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div><b>Nên cải thiện</b><ul>${arr(d.improve).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div></div>
+    </div>`;
+  }catch(err){if(sid!==rp.sid)return;$('#rfb').innerHTML=errHTML(err);rp.ended=false;renderRP()}
+});
+$('#rreset').addEventListener('click',()=>{Object.assign(rp,{msgs:[],ended:false,err:'',busy:false,sid:rp.sid+1});$('#rpSession').hidden=true;$('#rpSetup').hidden=false;$('#rfb').innerHTML=''});
+}
+</script>
+</body>
+</html>
